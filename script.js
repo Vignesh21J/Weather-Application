@@ -16,11 +16,15 @@ let api;
 const apiKey = '011f387330d678efd96cdcad7ae6235c';
 
 
-inputField.addEventListener("keydown", (e) => {
+inputField.addEventListener("keydown",(e)=>{
     const regex = /^[a-zA-Z]+$/;
     if (!regex.test(e.key) && e.key !== "Backspace" && e.key !== "Enter") {
         e.preventDefault();
     }
+});
+
+inputField.addEventListener('input',(e)=>{
+    inputField.value = inputField.value.replace(/[^a-zA-Z]/g,'')
 });
 
 inputField.addEventListener("keyup", (e)=>{
