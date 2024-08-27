@@ -133,6 +133,17 @@ function onError(error){
 }
 
 
+inputField.addEventListener("keyup", (e) => {
+    const pattern = /^[a-zA-Z]+$/;
+    if (!pattern.test(e.key) && e.key !== "Backspace" && e.key !== "Enter") {
+        e.preventDefault();
+    }
+    if(e.key === "Enter" && inputField.value !== ""){
+        requestAPI(inputField.value);
+    }
+});
+
+
 arrowBack.addEventListener("click", () => {
     wrapper.classList.remove("active");
 });
