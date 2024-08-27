@@ -16,11 +16,20 @@ let api;
 const apiKey = '011f387330d678efd96cdcad7ae6235c';
 
 
+inputField.addEventListener("keydown", (e) => {
+    const regex = /^[a-zA-Z]+$/;
+    if (!regex.test(e.key) && e.key !== "Backspace" && e.key !== "Enter") {
+        e.preventDefault();
+    }
+});
+
 inputField.addEventListener("keyup", (e)=>{
     if(e.key == "Enter" && inputField.value != ""){
         requestAPI(inputField.value);
     }
 })
+
+
 
 function requestAPI(city){
     api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
@@ -132,16 +141,6 @@ function onError(error){
     infoTxt.classList.add('error');
 }
 
-
-inputField.addEventListener("keyup", (e) => {
-    const pattern = /^[a-zA-Z]+$/;
-    if (!pattern.test(e.key) && e.key !== "Backspace" && e.key !== "Enter") {
-        e.preventDefault();
-    }
-    if(e.key === "Enter" && inputField.value !== ""){
-        requestAPI(inputField.value);
-    }
-});
 
 
 arrowBack.addEventListener("click", () => {
